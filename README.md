@@ -15,3 +15,10 @@ express로 구성된 백엔드 코드를 nestjs로 바꿔봅니다
   * console.log() -> 미들웨어 구현하여 logger 사용 
     * implements 를 하면 구현이 반드시 이루어져야함
     * DI provider - @injectable()
+
+
+  >  users 모듈만들고 > 컨트롤러 
+
+  - nest g(generate) mo users
+  - nest g co users 컨트로러
+  - nest g s users 서비싀
