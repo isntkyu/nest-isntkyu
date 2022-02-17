@@ -12,3 +12,4 @@ express로 구성된 백엔드 코드를 nestjs로 바꿔봅니다
 * 2/17
 
   * console.log() -> 미들웨어 구현하여 logger 사용 
+  * dotenv 셋팅 
