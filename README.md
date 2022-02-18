@@ -22,3 +22,7 @@ express로 구성된 백엔드 코드를 nestjs로 바꿔봅니다
   - nest g(generate) mo users
   - nest g co users 컨트로러
   - nest g s users 서비싀
+
+  #### nest 명령어 대신 npx @nestjs/cli 를 사용하는중
+
+  npm i -g @nestjs/cli는 문제가있음 (나중에 정리, 해결)
