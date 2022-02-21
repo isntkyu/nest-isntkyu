@@ -54,3 +54,18 @@ api 변수명등을 신중해야하는게 한번 공개된거는 고치기 힘�
   * API 스웨거생성 
   * 데코레이터 커스텀
   * interceptor 사용
+
+* 2/21
+
+  https://rxjs.dev/api/index/const/asyncScheduler
+
+`AOP`(인터셉터가 aop역할)
+
+DI 결합성을 낮추면 테스트나 재사용하기가 편함
+
+초보한텐 네스트가 좋을수잇음 
+
+`npm i typeorm-model-generator -D`  DB를 그대로 타입스크립트 엔터티로 가져올 수 잇다
+
+many to many 버그생기면 many to one to many
+https://www.erdcloud.com/
