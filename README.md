@@ -92,3 +92,8 @@ fotRoot = 설정이 붙은애들 ( =레지스터)
       ormconfig.ts 도 읽을 수 있게
     "db:create-migration": "npm run typeorm migration:create -- -n",
     "db:generate-migration": "npm run typeorm migration:generate -- -n"
+
+
+    DI reposit 하는법
+
+    async 함수에서는 throw 해도 서버 안죽고 200응답
