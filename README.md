@@ -69,3 +69,26 @@ DI 결합성을 낮추면 테스트나 재사용하기가 편함
 
 many to many 버그생기면 many to one to many
 https://www.erdcloud.com/
+
+fotRoot = 설정이 붙은애들 ( =레지스터)
+
+
+* 2/22
+
+ db -> typeorm   제너레이터
+ typeorm -> db   synchronize: true, (ormconfig) 한번만 트루 해야함
+ synchronize: true 하는게 싫으면 
+  npm run 
+    "schema:drop": "ts-node ./node_modules/typeorm/cli.js schema:drop",
+    "schema:sync": "ts-node ./node_modules/typeorm/cli.js schema:sync",
+
+  * type-seeding  초기데이터 (팩토리로 가짜데이터 삽입할수잇음)
+
+
+  마이그레이션
+
+
+    "typeorm": "node --require ts-node/register ./node_modules/typeorm/cli.js",
+      ormconfig.ts 도 읽을 수 있게
+    "db:create-migration": "npm run typeorm migration:create -- -n",
+    "db:generate-migration": "npm run typeorm migration:generate -- -n"
