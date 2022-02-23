@@ -1,8 +1,8 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Users } from 'src/entities/Users';
 import { Repository } from 'typeorm';
-import { bcrypt } from 'bcrypt';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UsersService {
@@ -14,18 +14,15 @@ export class UsersService {
     async postUsers(email: string, nickname: string, password: string){
         if (!email) {
             //없으면 에러
-            throw new Error('이메일없음');
-            return;
+            throw new HttpException('이메일없음', 400);
         }
         if (!nickname) {
             //없으면 에러
-            throw new Error('닉네임없음');
-            return;
+            throw new HttpException('닉네임없음', 400);
         }
         if (!password) {
             //없으면 에러
-            throw new Error('비번없음');
-            return;
+            throw new HttpException('비번없음', 400);
         }
         const user = await this.usersRepository.findOne({where: {email}})
 

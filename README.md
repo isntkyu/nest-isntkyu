@@ -97,3 +97,11 @@ fotRoot = 설정이 붙은애들 ( =레지스터)
     DI reposit 하는법
 
     async 함수에서는 throw 해도 서버 안죽고 200응답
+    프로미스안에서는 경고로 뜸
+
+* 2.23
+  - HttpException
+
+  import { bcrypt } from 'bcrypt';
+  import * as bcrypt from 'bcrypt';.
+  commonjs랑 es module의 차이점 때문입니다. commonjs에는 default가 없습니다

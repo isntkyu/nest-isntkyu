@@ -1,12 +1,13 @@
 import { NestFactory } from '@nestjs/core';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app.module';
+import { HttpExceptionFilter } from './httpException.filter';
 declare const module: any;
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const port = process.env.PORT || 3000;
-
+  app.useGlobalFilters(new HttpExceptionFilter);
   const config = new DocumentBuilder()
     .setTitle('isntkyu nest API')
     .setDescription('Nest로 스웨거 만들기 공부')
