@@ -105,3 +105,8 @@ fotRoot = 설정이 붙은애들 ( =레지스터)
   import { bcrypt } from 'bcrypt';
   import * as bcrypt from 'bcrypt';.
   commonjs랑 es module의 차이점 때문입니다. commonjs에는 default가 없습니다
+
+* 2.24
+
+  * class-validator
+     - 데코레이터 를 dto 위에 붙여서 사용 
