@@ -123,5 +123,6 @@ fotRoot = 설정이 붙은애들 ( =레지스터)
   * class-validator
      - 데코레이터 를 dto 위에 붙여서 사용 
 
-
 ---
+* 2.25
+  * @nestjs/passport
