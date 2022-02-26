@@ -132,3 +132,16 @@ fotRoot = 설정이 붙은애들 ( =레지스터)
 서비스 안에서는 레포지토리를쓴다 (컨트롤러에선 서비스만 쓰고)
 서비스 안에 서비스 쓰면 나중에 가짜객체 모킹을 할떄 테스트가 불편해진다.
 계층을 나누는게 편할듯
+
+
+strategy 에서 done 되면
+-> req login 으로 간다음 (await super.logIn(request);)
+-> serializeUser 로 감
+
+모듈의 메타데이터 남의 모듈 -> 임포트, 프로바이더 => 인젝터블
+
+
+app.module 에는 모든 모듈이 연결되어있어야하는데
+a > b > c 일떄는 c 를 굳이 넣어야한다는 말은아님
+
+relations / join
