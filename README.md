@@ -145,4 +145,15 @@ strategy 에서 done 되면
 app.module 에는 모든 모듈이 연결되어있어야하는데
 a > b > c 일떄는 c 를 굳이 넣어야한다는 말은아님
 
-relations / join
+* relations / join
+
+relations: ['Workspaces'] 
+<img width="548" alt="스크린샷 2022-02-27 오후 8 36 07" src="https://user-images.githubusercontent.com/56504493/155880814-ea810786-88d9-447a-9dff-e5f2008330e0.png">
+이 Workspaces 를 매칭
+
+join 을 쓸 수도 잇음
+
+* 2/27
+
+ typeOrm - 쿼리를 날리는 메소드에서는 즉 db 연동 하는 부분에서는 에러 catch 해주기
+ 
