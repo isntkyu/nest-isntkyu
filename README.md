@@ -153,7 +153,62 @@ relations: ['Workspaces']
 
 join 을 쓸 수도 잇음
 
+---
+
 * 2/27
 
  typeOrm - 쿼리를 날리는 메소드에서는 즉 db 연동 하는 부분에서는 에러 catch 해주기
+
+---
  
+* 3/1
+
+  @인젝션하면 @모듈에 import에 넣어주기 
+
+  데이터 매퍼 패턴
+
+```js
+
+//중간테이블 사용 장단점
+        //방법1
+        const workspaceMember = this.workspaceMembersRepository.create();
+        workspaceMember.UserId = returned.id;
+        workspaceMember.WorkspaceId = 1;
+        //방법2
+        await this.channelMembersRepository.save({ //data mapper
+            UserId: returned.id,
+            ChannelId: 1
+        })
+
+```
+
+방법 1은 서비스내에서 if문 for 문 등 다양하게 활용가능한 장점
+
+    * typeorm Transaction  방법 다양함
+      https://orkhan.gitbook.io/typeorm/docs/transactions 여기서 정리
+      공식문서에서는 쿼리러너 추천
+
+
+    * 라이브러리에서 그대로 가져오는 것 Nest 에서는 피해야할 패턴 (DI)
+    
+    ex)
+    ```js
+    const queryRunner = getConnection().createQueryRunner();
+    queryRunner.connect();
+    ```
+
+    
+    >```js
+    constructor(private connection: Connection,)
+    //`
+    //`
+    //`
+    const queryRunner = this.connection().createQueryRunner();
+    queryRunner.connect();
+    ```
+
+    테스트용 커넥션으루 후에 대체 가능해서 좋다 .
+
+
+    * queryRunner.manager.getRepository()
+      * 쿼리러너로 레포지토리를 불러와야한 트랜잭션 커넥션에 묶임 
