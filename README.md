@@ -1,4 +1,4 @@
->>>NestJS와 typeORM을 공부합니다.
+>>>NestJS와 typeORM을 공부합니다.  
 >> 후에 복습후 블로그에 정리
 
 ZeroCho 님의 슬랙 클론 코딩 풀스택 리포지토리를 fork 해서 
@@ -191,21 +191,20 @@ join 을 쓸 수도 잇음
 
     * 라이브러리에서 그대로 가져오는 것 Nest 에서는 피해야할 패턴 (DI)
     
-    ex)
-    ```js
-    const queryRunner = getConnection().createQueryRunner();
-    queryRunner.connect();
-    ```
+ ex)
+ ```js
+ const queryRunner = getConnection().createQueryRunner();
+ queryRunner.connect();
+ ```
 
-    
-    >```js
-    constructor(private connection: Connection,)
-    //`
-    //`
-    //`
-    const queryRunner = this.connection().createQueryRunner();
-    queryRunner.connect();
-    ```
+
+ ```js
+ constructor(private connection: Connection,)
+ 
+ 
+ const queryRunner = this.connection().createQueryRunner();
+ queryRunner.connect();
+ ```
 
     테스트용 커넥션으루 후에 대체 가능해서 좋다 .
 
