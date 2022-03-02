@@ -212,3 +212,13 @@ join 을 쓸 수도 잇음
 
     * queryRunner.manager.getRepository()
       * 쿼리러너로 레포지토리를 불러와야한 트랜잭션 커넥션에 묶임 
+
+* 3/2
+  * 클래스를 상속받아서 쓸때는  DI가 잘 안되는 경우가 있는데 이때는
+    constructor 바깥에 @Inject 를 한다 (기본적으로는 constructor 안에 인젝션하는걸 권장)
+
+  * find({where: {id}, take: 1}); take == limit
+
+  * (@Param('myId', ParseIntPipe) myId: number) // 자바스크립트에서는 스트링으로 다루기때문에 파라미터를, ParseIntPipe
+
+  * nest DTO 장점 valiation, swagger(문서화), 타입지정
