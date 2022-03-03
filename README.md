@@ -226,4 +226,7 @@ join 을 쓸 수도 잇음
   * nest DTO 장점 valiation, swagger(문서화), 타입지정
 
 * 3/3 절친 생일
-  * 
+  * typeorm 쿼리빌더
+  * Active Record
+  * Data Mapper
+  * QueryBuilder
