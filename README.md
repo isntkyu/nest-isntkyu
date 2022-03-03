@@ -1,4 +1,7 @@
->>>NestJS와 typeORM을 공부합니다.  
+>>>NestJS와 typeORM을 공부합니다. 
+
+  
+
 >> 후에 복습후 블로그에 정리
 
 ZeroCho 님의 슬랙 클론 코딩 풀스택 리포지토리를 fork 해서 
@@ -221,3 +224,6 @@ join 을 쓸 수도 잇음
   * (@Param('myId', ParseIntPipe) myId: number) // 자바스크립트에서는 스트링으로 다루기때문에 파라미터를, ParseIntPipe
 
   * nest DTO 장점 valiation, swagger(문서화), 타입지정
+
+* 3/3 절친 생일
+  * 
