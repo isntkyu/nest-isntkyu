@@ -35,6 +35,31 @@ export class WorkspacesService {
     }
 
     async createWorkspace (name:string, url: string, myId: number) {
-        
+        const workspace = this.workspaceRepository.create({
+            name,
+            url,
+            OwnerId: myId,
+        })
+        const returned = this.workspaceRepository.save(workspace);
+
+        const workspaceMember = new WorkspaceMembers();
+        workspaceMember.UserId = myId;
+        workspaceMember.WorkspaceId = (await returned).id;
+        await this.workspaceMembersRepository.save(workspaceMember);
+        const channel = new Channels();
+        channel.name = '일반';
+        channel.WorkspaceId = (await returned).id;
+        const channelReturned = await this.channelsRepository.save(channel);
+        const channelMember = new ChannelMembers();
+        channelMember.UserId = myId;
+        channelMember.ChannelId = channelReturned.id;
+        await this.channelMembersRepository.save(channelMember);
     }
+
+    async getWorkspaceMembers(url: string) {
+        return this.usersRepository.createQueryBuilder('user')
+        .innerJoin('user.WorkspaceMembers', 'm')
+        .innerJoin('m.Workspace', 'w', 'w.url = :url', {url})
+        .getMany();
+    }   
 }
