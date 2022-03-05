@@ -235,3 +235,5 @@ join 을 쓸 수도 잇음
   *  'w.url = :url', {url: url}); typrorm이 sql 인젝션 방어햊둠
   `w.url = ${url}`);  이 방식은 sql 인젝션 때문에 위험함 
 
+  * 
+
