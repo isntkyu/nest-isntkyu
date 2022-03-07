@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { MoreThan, Repository } from 'typeorm';
 import { ChannelChats } from '../entities/ChannelChats';
@@ -116,6 +116,18 @@ export class ChannelsService {
       .getMany();
   }
 
+  async getWorkspaceChannelMembers(url: string, name: string) {
+    return this.usersRepository
+      .createQueryBuilder('user')
+      .innerJoin('user.Channels', 'channels', 'channels.name = :name', {
+        name,
+      })
+      .innerJoin('channels.Workspace', 'workspace', 'workspace.url = :url', {
+        url,
+      })
+      .getMany();
+  }
+
   async getChannelUnreadsCount(url, name, after) {
     const channel = await this.channelsRepository
       .createQueryBuilder('channel')
@@ -130,5 +142,32 @@ export class ChannelsService {
         createdAt: MoreThan(new Date(after)),
       },
     });
+  }
+
+  async postChat({url, name, content, myId}) {
+    const channel = await this.channelsRepository
+    .createQueryBuilder('channel')
+    .innerJoin('channel.Workspace', 'workspace', 'workspace.url = :url', {
+      url,
+    })
+    .where('channel.name = :name', {name})
+    .getOne();
+
+    if(!channel) {
+      throw new NotFoundException('채널이 존재하지 않습니다.');
+    }
+    const chats = new ChannelChats();
+    chats.content = content;
+    chats.UserId = myId;
+    chats.ChannelId = channel.id;
+    const savedChat = await this.channelChatsRepository.save(chats);
+    // savedChat.Channel = channel;
+    // savedChat.User = user;
+    const chatWithUser = await this.channelChatsRepository.findOne({
+      where: {id: savedChat.id},
+      relations: ['User', 'Channel'],
+    });
+
+    //socket.io로 전송
   }
 }

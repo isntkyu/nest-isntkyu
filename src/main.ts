@@ -5,7 +5,7 @@ import passport from 'passport';
 import cookieParser from 'cookie-parser';
 import { AppModule } from './app.module';
 import session from 'express-session';
-import { HttpExceptionFilter } from './httpException.filter';
+import { HttpExceptionFilter } from './http-exception.filter';
 declare const module: any;
 
 async function bootstrap() {

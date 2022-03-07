@@ -20,13 +20,13 @@ export class WorkspacesController {
         return this.workspacesService.createWorkspace(
             body.workspace,
             body.url,
-            body.id,
+            user.id,
         );
     }
 
     @Get(':url/members')
-    getAllMembersFromWorkspace() {
-
+    getAllMembersFromWorkspace(@Param('url') url: string) {
+        return this.workspacesService.getWorkspaceMembers(url);
     }
 
     @Post(':url/members')
