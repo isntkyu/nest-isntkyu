@@ -53,4 +53,82 @@ export class ChannelsService {
       .where('channel.name = :name', { name })
       .getOne();
   }
+
+  async createWorkspaceChannels(url: string, name: string, myId: number) {
+    const workspace = await this.workspacesRepository.findOne({
+      where: { url },
+    });
+    const channel = new Channels();
+    channel.name = name;
+    channel.WorkspaceId = workspace.id;
+    const channelReturned = await this.channelsRepository.save(channel);
+    const channelMember = new ChannelMembers();
+    channelMember.UserId = myId;
+    channelMember.ChannelId = channelReturned.id;
+    await this.channelMembersRepository.save(channelMember);
+  }
+
+  async createWorkspaceChannelMembers(url, name, email) {
+    const channel = await this.channelsRepository
+      .createQueryBuilder('channel')
+      .innerJoin('channel.Workspace', 'workspace', 'workspace.url = :url', {
+        url,
+      })
+      .where('channel.name = :name', { name })
+      .getOne();
+    if (!channel) {
+      return null; // TODO: 이 때 어떻게 에러 발생?
+    }
+    const user = await this.usersRepository
+      .createQueryBuilder('user')
+      .where('user.email = :email', { email })
+      .innerJoin('user.Workspaces', 'workspace', 'workspace.url = :url', {
+        url,
+      })
+      .getOne();
+    if (!user) {
+      return null;
+    }
+    const channelMember = new ChannelMembers();
+    channelMember.ChannelId = channel.id;
+    channelMember.UserId = user.id;
+    await this.channelMembersRepository.save(channelMember);
+  }
+
+  async getWorkspaceChannelChats(
+    url: string,
+    name: string,
+    perPage: number,
+    page: number,
+  ) {
+    return this.channelChatsRepository
+      .createQueryBuilder('channelChats')
+      .innerJoin('channelChats.Channel', 'channel', 'channel.name = :name', {
+        name,
+      })
+      .innerJoin('channel.Workspace', 'workspace', 'workspace.url = :url', {
+        url,
+      })
+      .innerJoinAndSelect('channelChats.User', 'user')
+      .orderBy('channelChats.createdAt', 'DESC')
+      .take(perPage)
+      .skip(perPage * (page - 1))
+      .getMany();
+  }
+
+  async getChannelUnreadsCount(url, name, after) {
+    const channel = await this.channelsRepository
+      .createQueryBuilder('channel')
+      .innerJoin('channel.Workspace', 'workspace', 'workspace.url = :url', {
+        url,
+      })
+      .where('channel.name = :name', { name })
+      .getOne();
+    return this.channelChatsRepository.count({
+      where: {
+        ChannelId: channel.id,
+        createdAt: MoreThan(new Date(after)),
+      },
+    });
+  }
 }
