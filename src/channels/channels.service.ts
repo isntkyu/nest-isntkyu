@@ -1,5 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { EventsGateway } from 'src/events/events.gateway';
 import { MoreThan, Repository } from 'typeorm';
 import { ChannelChats } from '../entities/ChannelChats';
 import { ChannelMembers } from '../entities/ChannelMembers';
@@ -20,6 +21,7 @@ export class ChannelsService {
       private channelChatsRepository: Repository<ChannelChats>,
       @InjectRepository(Users)
       private usersRepository: Repository<Users>,
+      private eventsGateway: EventsGateway,
   ) {}
 
   async findById(id: number) {
@@ -169,5 +171,6 @@ export class ChannelsService {
     });
 
     //socket.io로 전송
+    this.eventsGateway.server.to(`/ws-${url}-${chatWithUser.ChannelId}`);
   }
 }

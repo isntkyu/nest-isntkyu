@@ -237,3 +237,13 @@ join 을 쓸 수도 잇음
 
   * 
 
+
+* 3/9
+
+  * nest 내장 웹소켓 - 게이트웨이(프로바이더임)
+  * socket.io도 passport처럼 네스트식으로 감싸서 사용
+  * namespace(regex) >> room
+
+  * implements 하면 그 안의 함수들을 의무적으로 구현해야하기 때문에 검사용도로 사용도 가능.
+
+  * providers 에 넣으면 안되고 import EventsModule 로 해야한다.
