@@ -1,4 +1,5 @@
-import { Controller, Get, Post, Query, Param, Body } from '@nestjs/common';
+import { Controller, Get, Post, Query, Param, Body, UseInterceptors, UploadedFile } from '@nestjs/common';
+import { FileInterceptor } from '@nestjs/platform-express';
 import { ApiTags } from '@nestjs/swagger';
 import { User } from 'src/common/decorators/user.decorator';
 import { ChannelsService } from './channels.service';
@@ -42,8 +43,9 @@ export class ChannelsController {
       return this.channelsService.postChat({url, name, content: body.content, myId: user.id});
     }
 
+    @UseInterceptors(FileInterceptor)
     @Post(':name/images')
-    postImage(@Body() body) {
+    postImage(@UploadedFile() file: Express.Multer.File) {
 
     }
 

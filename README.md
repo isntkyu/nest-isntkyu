@@ -247,3 +247,10 @@ join 을 쓸 수도 잇음
   * implements 하면 그 안의 함수들을 의무적으로 구현해야하기 때문에 검사용도로 사용도 가능.
 
   * providers 에 넣으면 안되고 import EventsModule 로 해야한다.
+
+
+
+* 3/14
+
+  * file upload multer @UseInterceptors(FileInterceptor) FileInterceptor 가 multer의 어레이 싱글 등에 대응.
+
