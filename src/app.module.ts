@@ -12,7 +12,7 @@ import * as ormconfig from '../ormconfig';
 import { Users } from './entities/Users';
 import { AuthModule } from './auth/auth.module';
 import { EventsModule } from './events/events.module';
-import { EventsGateway } from './events.gateway';
+import { EventsGateway } from './events/events.gateway';
 
 @Module({
   imports: [ConfigModule.forRoot({

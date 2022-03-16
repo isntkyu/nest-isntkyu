@@ -4,16 +4,38 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import passport from 'passport';
 import cookieParser from 'cookie-parser';
 import { AppModule } from './app.module';
+import path from 'path';
 import session from 'express-session';
+import { NestExpressApplication } from '@nestjs/platform-express';
 import { HttpExceptionFilter } from './http-exception.filter';
 declare const module: any;
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create<NestExpressApplication>(AppModule);
   const port = process.env.PORT || 3000;
   app.useGlobalPipes(new ValidationPipe({
       transform: true,
    }),
+  );
+  app.enableCors({
+    origin: true,
+    credentials: true,
+  });
+  app.useStaticAssets(
+    process.env.NODE_ENV === 'production'
+      ? path.join(__dirname, '..', '..', 'uploads')
+      : path.join(__dirname, '..', 'uploads'),
+    {
+      prefix: '/uploads',
+    },
+  );
+  app.useStaticAssets(
+    process.env.NODE_ENV === 'production'
+      ? path.join(__dirname, '..', '..', 'public')
+      : path.join(__dirname, '..', 'public'),
+    {
+      prefix: '/dist',
+    },
   );
   app.useGlobalFilters(new HttpExceptionFilter);
   const config = new DocumentBuilder()
