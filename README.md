@@ -264,3 +264,10 @@ join 을 쓸 수도 잇음
   - 해결법
   *  import { NestExpressApplication } from '@nestjs/platform-express';
   *  const app = await NestFactory.create<NestExpressApplication>(AppModule);
+
+
+* 3/17
+  * 빌드시 윈도우면 `cross-env` 사용 NODE_ENV=
+  * 리눅스나 맥에서는 80 포트쓰려면 sudo 붙이기
+  * pm2 사용 배포
+  * 메모리 사용문제로 로컬에서 빌드(nest 빌드)해서 dist 파일을 git으로 옮겨서 서버에서 사용해도됨

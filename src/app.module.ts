@@ -6,7 +6,7 @@ import { LoggerMiddleware } from './middlewares/logger.middleware';
 import { UsersModule } from './users/users.module';
 import { WorkspacesModule } from './workspaces/workspaces.module';
 import { ChannelsModule } from './channels/channels.module';
-import { DmsModule } from './dms/dms.module';
+import { DMsModule } from './dms/dms.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import * as ormconfig from '../ormconfig';
 import { Users } from './entities/Users';
@@ -17,7 +17,7 @@ import { EventsGateway } from './events/events.gateway';
 @Module({
   imports: [ConfigModule.forRoot({
       isGlobal: true,
-    }), UsersModule, WorkspacesModule, ChannelsModule, DmsModule, AuthModule,
+    }), UsersModule, WorkspacesModule, ChannelsModule, DMsModule, AuthModule,
     TypeOrmModule.forRoot(ormconfig),
     TypeOrmModule.forFeature([Users]),
     EventsModule
