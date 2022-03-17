@@ -259,12 +259,13 @@ join 을 쓸 수도 잇음
   * 공식문서 server static ;
 
   * (사진)
+  * ![image](https://user-images.githubusercontent.com/56504493/158620221-158b0165-f6e8-4184-912d-94d3d795e47d.png)
+
   위와 같은 빨간줄 뜨는건 저 메서드가 익스프레스인지 패스티파이 인지 네스트는모르기때문
   둘중 한쪽에만 잇는 메소드일수 잇음
   - 해결법
   *  import { NestExpressApplication } from '@nestjs/platform-express';
   *  const app = await NestFactory.create<NestExpressApplication>(AppModule);
-
 
 * 3/17
   * 빌드시 윈도우면 `cross-env` 사용 NODE_ENV=
