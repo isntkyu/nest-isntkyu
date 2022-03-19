@@ -272,3 +272,20 @@ join 을 쓸 수도 잇음
   * 리눅스나 맥에서는 80 포트쓰려면 sudo 붙이기
   * pm2 사용 배포
   * 메모리 사용문제로 로컬에서 빌드(nest 빌드)해서 dist 파일을 git으로 옮겨서 서버에서 사용해도됨
+
+
+* 3/19
+
+  테스트 커버리지 100이라치면 에러가 안나진 않더라도 바보같은 에러는 안날 수 있겠다  
+  유닛테스트시 디비를 안쓰는 편이 좋기 때문에 실제 디비와 연결되어있는 레포지토리를 쓸 수 가업승
+  그래서 가짜 모킹을 통해 테스트진행 (DI가 조은이유)
+
+  * user.service.spec.ts
+  * beforeEach는 각각의 it 전에 실행됨 service 새로할당.( 스프링에도 똑같은 기능 있었음 )
+  * it.todo 나중에할 테스트
+  * expect : asserThat
+  * 모킹 useClass, useFactory, useValue
+  * async return promise=> resolves 추가
+  * #data < 비밀 데이터
+  * 객체간 비교 toBe > toStrictEqual
+  * Connection 모킹

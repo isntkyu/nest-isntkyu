@@ -15,13 +15,16 @@ import { EventsModule } from './events/events.module';
 import { EventsGateway } from './events/events.gateway';
 
 @Module({
-  imports: [ConfigModule.forRoot({
+  imports: [
+    ConfigModule.forRoot({
       isGlobal: true,
-    }), UsersModule, WorkspacesModule, ChannelsModule, DMsModule, AuthModule,
+    }), 
+    UsersModule, WorkspacesModule, ChannelsModule, 
+    DMsModule, AuthModule,
     TypeOrmModule.forRoot(ormconfig),
     TypeOrmModule.forFeature([Users]),
     EventsModule
-    ],
+  ],
   controllers: [AppController],
   providers: [AppService, EventsGateway],
 })
