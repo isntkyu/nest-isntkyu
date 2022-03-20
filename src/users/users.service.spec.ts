@@ -38,7 +38,7 @@ describe('UsersService', () => {
           provide: getRepositoryToken(ChannelMembers),
           useClass: MockChannelMembersRepository,
         },
-        Connection
+        // Connection
       ],
     }).compile();
 
