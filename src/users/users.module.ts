@@ -7,8 +7,9 @@ import { WorkspaceMembers } from 'src/entities/WorkspaceMembers';
 import { ChannelMembers } from 'src/entities/ChannelMembers';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Users, WorkspaceMembers, ChannelMembers])],
+  imports: [TypeOrmModule.forFeature([Users, WorkspaceMembers, ChannelMembers]),],
   providers: [UsersService],
-  controllers: [UsersController]
+  exports: [UsersService],
+  controllers: [UsersController],
 })
 export class UsersModule {}
