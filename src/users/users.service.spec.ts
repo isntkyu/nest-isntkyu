@@ -1,6 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
-// import { Connection } from 'typeorm';
 import { ChannelMembers } from '../entities/ChannelMembers';
 import { Users } from '../entities/Users';
 import { WorkspaceMembers } from '../entities/WorkspaceMembers';
@@ -18,6 +17,7 @@ class MockUserRepository {
 }
 class MockWorkspaceMembersRepository {}
 class MockChannelMembersRepository {}
+
 
 describe('UsersService', () => {
   let service: UsersService;
@@ -38,7 +38,6 @@ describe('UsersService', () => {
           provide: getRepositoryToken(ChannelMembers),
           useClass: MockChannelMembersRepository,
         },
-        // Connection
       ],
     }).compile();
 

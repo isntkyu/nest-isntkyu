@@ -25,7 +25,7 @@ export class ChannelsService {
   ) {}
 
   async findById(id: number) {
-    return this.channelChatsRepository.findOne({where:{id}});
+    return this.channelsRepository.findOne({where:{id}});
   }
 
   async getWorkspaceChannels(url: string, myId: number) {
