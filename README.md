@@ -288,8 +288,15 @@ join 을 쓸 수도 잇음
   * async return promise=> resolves 추가
   * #data < 비밀 데이터
   * 객체간 비교 toBe > toStrictEqual
-  * Connection 모킹
+  
 
 * 3/21
   * user.module 에 exports: UserService 추가
   * user.controller.spec.ts에 provide 추가
+
+* 3/23
+  * Connection 모킹
+        {
+          provide: Connection,
+          useClass: MockConnection,
+        },
