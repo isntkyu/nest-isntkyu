@@ -300,3 +300,8 @@ join 을 쓸 수도 잇음
           provide: Connection,
           useClass: MockConnection,
         },
+
+* 3/31
+  * e2e 테스트는 소스와무관하고 요청 테스트 test 디렉토리
+  * test DB 를 만들어서 하기.
+  * npm run test:e2e
